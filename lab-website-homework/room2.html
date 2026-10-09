@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>room of the colors</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="room">
+    <h1 id="roomTitle">pick a color</h1>
+    <div class="sliders">
+        <label class="slider-row"><output id="redValue">00</output><input id="redRange" type="range" min="0" max="255" value="0"></label>
+        <label class="slider-row"><output id="greenValue">00</output><input id="greenRange" type="range" min="0" max="255" value="0"></label>
+        <label class="slider-row"><output id="blueValue">00</output><input id="blueRange" type="range" min="0" max="255" value="0"></label>
+    </div>
+    <input class="color-preview" id="colorPreview" type="color" value="#000000">
+    <form class="rgb-form" id="rgbForm">
+      <div class="rgb-inputs">
+        <input id="rgbRed" type="number" min="0" max="255" placeholder="R" required>
+        <input id="rgbGreen" type="number" min="0" max="255" placeholder="G" required>
+        <input id="rgbBlue" type="number" min="0" max="255" placeholder="B" required>
+        <button type="submit">-&gt;</button>
+      </div>
+    </form>
+    <p class="wait-message" id="waitMessage"></p>
+    <button class="next-button is-hidden" id="nextRoomButton" type="button">enter to next room</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

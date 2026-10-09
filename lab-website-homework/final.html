@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>final</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="final-page">
+  <h1 class="final-title">congratz you have finished this absolute non-sense game</h1>
+  <img class="gif gif-topleft" src="images/fast-cat-cat-excited.gif">
+  <img class="gif gif-topright" src="images/dancing-emoji.gif">
+  <img class="gif gif-bottomright" src="images/meme.gif">
+  <img class="gif gif-bottomleft" src="images/oia-uia.gif">
+  <img class="gif-stage" src="images/happy-blingee.gif">
+
+  <button id="restartButton" type="button">restart</button>
+  <audio id="symphony" src="music/symphony.mp3" loop preload="auto"></audio>
+  <script>
+    const audio = document.getElementById("symphony");
+    audio.volume = 0.4;
+    audio.play().catch(() => {});
+    document.addEventListener("click", () => audio.play().catch(() => {}), { once: true });
+    document.getElementById("restartButton").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
