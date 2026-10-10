@@ -1,34 +1,8 @@
-/* =====================================================================
-   script.js  -  ONE file used by ALL pages of the site.
-
-   HOW TO FIND THINGS (search for the section number, e.g. "[3]"):
-
-     [1] SETTINGS ............. the secret key
-     [2] SHARED HELPERS ....... sound blips, typewriter text, music, text colors
-     [3] PAGE: index.html ..... "hello" screen + key input
-     [4] PAGE: room2.html ..... RGB color puzzle
-     [5] PAGE: room3.html ..... room full of eyes, find the key
-     [6] PAGE: room4.html ..... image that reveals itself as circles
-     [7] STARTUP .............. decides which page's code to run
-
-   Every page loads this same file, but only the code for the page you
-   are on actually runs (see [7]).
-   ===================================================================== */
-
-
-/* =====================================================================
-   [1] SETTINGS
-   ===================================================================== */
+// Shared code for all pages
 
 // The key you type on index.html to skip straight to final.html
 const secretKey = "MIS{VERY_SECRET_KEY}";
 
-
-/* =====================================================================
-   [2] SHARED HELPERS  (used by several pages)
-   ===================================================================== */
-
-/* ---- 2a. Sound blip (the tiny beep while text is typed) ---- */
 
 let blipContext = null;
 
@@ -67,8 +41,6 @@ function playBlip() {
   }
 }
 
-/* ---- 2b. Typewriter effect ---- */
-
 // Types `text` into the element matching `selector`, one letter at a time,
 // with a blip per letter. Example: typeMessage("#waitMessage", "hi")
 function typeMessage(selector, text) {
@@ -84,8 +56,6 @@ function typeMessage(selector, text) {
   next();
 }
 
-/* ---- 2c. Background music (index, room2, room3, room4) ---- */
-
 function setupBackgroundMusic() {
   const music = new Audio("music/fire-water.mp3");
   music.loop = true;
@@ -96,8 +66,6 @@ function setupBackgroundMusic() {
     document.addEventListener(type, () => music.play().catch(() => { }), { once: true });
   });
 }
-
-/* ---- 2d. Text colors that contrast with the background (room2) ---- */
 
 // Takes the background color (R, G, B) and sets the page's text colors
 // to the opposite hue on the color wheel, so text stays readable.
