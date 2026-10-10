@@ -32,8 +32,7 @@ const secretKey = "MIS{VERY_SECRET_KEY}";
 
 let blipContext = null;
 
-// Browsers block sound until the user interacts, so we create/resume
-// the audio system on the first click, touch or key press.
+
 function getBlipContext() {
   if (!blipContext) {
     blipContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -102,7 +101,7 @@ function setupBackgroundMusic() {
 
 // Takes the background color (R, G, B) and sets the page's text colors
 // to the opposite hue on the color wheel, so text stays readable.
-// It works by changing the CSS variables --ink, --muted and --accent.
+// It works by changing the CSS variables --ink and --accent.
 function oppositeText(red, green, blue) {
   const values = [red / 255, green / 255, blue / 255];
   const max = Math.max(...values);
@@ -121,7 +120,6 @@ function oppositeText(red, green, blue) {
   const opposite = (hue + 180) % 360;
   const saturationValue = saturation ? 70 : 0;
   document.documentElement.style.setProperty("--ink", `hsl(${opposite} ${saturationValue}% 82%)`);
-  document.documentElement.style.setProperty("--muted", `hsl(${opposite} ${saturationValue}% 68%)`);
   document.documentElement.style.setProperty("--accent", `hsl(${opposite} ${saturationValue}% 62%)`);
 }
 

@@ -4,18 +4,11 @@
 
 :root {
   --ink: #dce8df;
-  --muted: #718078;
   --line: #26352f;
   --accent: #b11226;
   --background: #000000;
   --mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
   --display: Georgia, "Times New Roman", serif;
-}
-
-html,
-body {
-  min-width: 320px;
-  min-height: 100%;
 }
 
 body {
@@ -37,40 +30,31 @@ button {
   cursor: pointer;
 }
 
-
-.gif {
-  position: fixed;
+.gif,
+.gif-stage {
   pointer-events: none;
-  z-index: 2;             
+  position: fixed;
 }
 
-.gif-corner { bottom: 20px; right: 20px; width: 200px; }
-.gif-center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 25vw; }
-.gif { position: fixed; pointer-events: none; z-index: 1; }
-.gif-topleft    { top: 20px;    left: 20px;  width: 300px; }
-.gif-topright   { top: 20px;    right: 20px; width: 300px; }
-.gif-bottomleft { bottom: 20px; left: 20px;  width: 300px; }
+.gif { z-index: 1; }
+.gif-topleft { top: 20px; left: 20px; width: 300px; }
+.gif-topright { top: 20px; right: 20px; width: 300px; }
+.gif-bottomleft { bottom: 20px; left: 20px; width: 300px; }
 .gif-bottomright { bottom: 20px; right: 20px; width: 300px; }
 
-
-
-
 body.is-glitching {
-  position: relative;
   animation: vhs-shift 0.15s steps(2) infinite;
 }
-
 
 body.is-glitching::before,
 body.is-glitching::after {
   content: "";
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  inset: 0;
   pointer-events: none;
   z-index: 9999;
   opacity: 0.8;
 }
-
 
 body.is-glitching::before {
   background: inherit;
@@ -78,7 +62,6 @@ body.is-glitching::before {
   transform: translate(3px, -2px);
   mix-blend-mode: screen;
 }
-
 
 body.is-glitching::after {
   background: repeating-linear-gradient(
@@ -91,7 +74,6 @@ body.is-glitching::after {
   transform: translate(-3px, 2px);
 }
 
-
 @keyframes vhs-shift {
   0% { transform: translate(0, 0) skewX(0deg); }
   25% { transform: translate(-4px, 1px) skewX(1deg); }
@@ -100,11 +82,8 @@ body.is-glitching::after {
   100% { transform: translate(0, 0) skewX(0deg); }
 }
 
-
-
 .entry {
   display: grid;
-  min-height: 100vh;
   place-items: center;
   cursor: pointer;
 }
@@ -133,6 +112,7 @@ body.is-glitching::after {
   border: 1px solid var(--accent);
   color: var(--background);
   background: var(--accent);
+  font-size: 18px;
   text-transform: lowercase;
 }
 
@@ -142,7 +122,7 @@ body.is-glitching::after {
   gap: 10px;
   margin-top: 25px;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 18px;
 }
 
 #keyForm input {
@@ -172,11 +152,10 @@ body.is-glitching::after {
 /* Color room */
 .room {
   position: relative;
-  min-height: 100vh;
   padding: 28px clamp(20px, 6vw, 80px);
 }
 
-#roomTitle {
+.room-title {
   position: fixed;
   top: 28px;
   right: clamp(20px, 6vw, 80px);
@@ -287,7 +266,6 @@ input[type="range"] {
   left: 50%;
   margin: 110px 0 0;
   color: var(--accent);
-  font-family: var(--mono);
   font-size: 22px;
   transform: translateX(-50%);
 }
@@ -296,27 +274,22 @@ input[type="range"] {
   display: none;
 }
 
-/* Eye room */
-#eyes {
+
+.eyes-room {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   background: #030303;
 }
 
-#eyeCanvas {
+.eye-canvas,
+.reveal-canvas,
+.gif-stage {
   display: block;
   width: 100vw;
   height: 100vh;
-  
 }
 
 .eye-hint {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 2;
   margin: 0;
   color: var(--ink);
   font-family: var(--display);
@@ -324,12 +297,10 @@ input[type="range"] {
   font-weight: normal;
   pointer-events: none;
   text-align: center;
-  transform: translate(-50%, -50%);
 }
 
-/* Final room */
+
 .final-room {
-  min-height: 100vh;
   background: #121212;
 }
 
@@ -337,13 +308,6 @@ input[type="range"] {
   position: fixed;
   inset: 0;
   overflow: hidden;
-}
-
-#revealCanvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  
 }
 
 .back-button {
@@ -355,7 +319,6 @@ input[type="range"] {
   border: 1px solid #ffffff;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.65);
-  font-family: var(--mono);
   font-size: 11px;
   transform: translateX(-50%);
 }
@@ -371,14 +334,13 @@ input[type="range"] {
   top: 28px;
   left: 50%;
   color: var(--ink);
-  font-family: var(--mono);
   font-size: 22px;
   text-transform: lowercase;
   transform: translateX(-50%);
 }
 
 @media (max-width: 680px) {
-  #roomTitle {
+  .room-title {
     top: 22px;
     right: 20px;
   }
@@ -407,25 +369,21 @@ input[type="range"] {
 }
 
 
-body.final-page {
-  background: #000;
-  margin: 0;
-}
-.final-title {
+.final-title,
+.eye-hint {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  
-  
+}
+
+.final-title {
   font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', 'Chalkboard SE', sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
-  
- 
   text-shadow: 
     -2px -2px 0 #000,  
      2px -2px 0 #000,
@@ -436,21 +394,17 @@ body.final-page {
      0px -3px 0 #000,
      0px  3px 0 #000,
      3px  3px 6px rgba(0, 0, 0, 0.8);
-  
   pointer-events: none;
 }
 
 .gif-stage {
   z-index: 0;
-  position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   object-fit: cover;
   object-position: top;
 }
 
-#restartButton {
+.restart-button {
   position: fixed;
   bottom: 20px;
   left: 50%;
@@ -464,11 +418,10 @@ body.final-page {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.6;
-  cursor: pointer;
   transition: opacity 200ms ease, background 200ms ease;
 }
 
-#restartButton:hover {
+.restart-button:hover {
   opacity: 1;
   background: rgba(0, 0, 0, 0.8);
 }
