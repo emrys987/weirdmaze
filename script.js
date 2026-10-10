@@ -131,16 +131,18 @@ function oppositeText(red, green, blue) {
 function initEntry() {
   const hello = document.querySelector("#hello");
   const actions = document.querySelector(".entry-actions");
+  const welcomeMessage = "hello, you will receive the key when you finish the puzzle";
 
-  // --- Types "hello" one letter at a time, then fades in the buttons ---
+  // --- Types the welcome message with a sound for each letter ---
   let index = 0;
   function typeHello() {
-    if (index >= 5) {
+    if (index >= welcomeMessage.length) {
       actions.classList.add("is-ready");
       return;
     }
-    hello.textContent += "hello"[index++];
-    window.setTimeout(typeHello, 120);
+    hello.textContent += welcomeMessage[index++];
+    playBlip();
+    window.setTimeout(typeHello, 55);
   }
 
   // --- "click ->" button: goes to room 2 ---
