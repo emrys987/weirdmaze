@@ -1,5 +1,12 @@
 * {
   box-sizing: border-box;
+  cursor: url("images/hand-cursor.png") 0 0, auto;
+}
+
+html,
+body,
+body * {
+  cursor: url("images/hand-cursor.png") 0 0, auto !important;
 }
 
 :root {
@@ -24,10 +31,6 @@ body {
 button,
 input {
   font: inherit;
-}
-
-button {
-  cursor: pointer;
 }
 
 .gif,
@@ -85,7 +88,6 @@ body.is-glitching::after {
 .entry {
   display: grid;
   place-items: center;
-  cursor: pointer;
 }
 
 .entry h1 {
@@ -152,6 +154,7 @@ body.is-glitching::after {
 /* Color room */
 .room {
   position: relative;
+  min-height: 100vh;
   padding: 28px clamp(20px, 6vw, 80px);
 }
 
@@ -193,11 +196,9 @@ input[type="range"] {
   width: 100%;
   height: 5px;
   accent-color: currentColor;
-  cursor: ew-resize;
 }
 
 .slider-row.is-locked input[type="range"] {
-  cursor: not-allowed;
   opacity: 0.35;
 }
 
@@ -210,7 +211,6 @@ input[type="range"] {
   padding: 3px;
   border: 1px solid var(--accent);
   background: var(--background);
-  cursor: pointer;
 }
 
 .rgb-form {
